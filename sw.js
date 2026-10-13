@@ -1,4 +1,4 @@
-const CACHE='mukt-library-v2';
+const CACHE='mukt-library-v3';
 const ASSETS=['./','./index.html','./style.css','./app.js','./ram.json','./chhinna.json','./bhagavat.json','./paigam.json','./themes.json','./manifest.webmanifest'];
 self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',e=>e.waitUntil((async()=>{for(const key of await caches.keys())if(key.startsWith('mukt-library-')&&key!==CACHE)await caches.delete(key);await self.clients.claim();for(const c of await self.clients.matchAll())c.postMessage({offlineReady:true});})()));
